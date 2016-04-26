@@ -1,0 +1,16 @@
+body{
+  padding: 0px;
+  margin: 0px;
+  background-image: url(back.jpg);
+}
+#mainPopup {
+  height: 200px;
+  width: 400px;
+  font-family: Quicksand;
+}
+#para{
+  background-color: yellow;
+}
+h1 {
+  font-size: 2em;
+}
