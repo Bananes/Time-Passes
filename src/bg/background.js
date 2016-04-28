@@ -26,13 +26,16 @@ chrome.runtime.onMessage.addListener(
 
 		if (typeof urlLast !== "undefined") {
 			var t = urlAct.openedAt - urlLast.openedAt;
+			console.log(urlAct.url);
+			console.log(urlAct.openedAt);
+			console.log(urlLast.url);
+			console.log(urlLast.openedAt);
 			console.log(t);
 			if (typeof data.timePasses[data.urls.indexOf(urlLast.url[2])] == "undefined") {
 				data.timePasses.push(t);
 			}
 			else {
 				data.timePasses[data.urls.indexOf(urlLast.url[2])] = data.timePasses[data.urls.indexOf(urlLast.url[2])] +t;
-
 			}
 			console.log(data);
 		}
@@ -55,15 +58,21 @@ chrome.tabs.query({
     //  the array has only one element
 		console.log(array_of_Tabs);
     var tab = array_of_Tabs[0];
-		urlLast =urlAct;
     var url = tab.url.split("/");
 		if (url[2] !== "newtab") {
-			urlAct.url = url[2];
+			urlLast =urlAct;
+			urlAct.url = url;
 			urlAct.openedAt = +new Date();
-			console.log(urlAct);
+			//console.log("BIATCCCCCCCCCH" +urlAct.openedAt + urlLast.openedAt);
 
 			var t = urlAct.openedAt - urlLast.openedAt;
-			data.timePasses[data.urls.indexOf(urlLast.url[2])] = data.timePasses[data.urls.indexOf(urlLast.url[2])] +t;
+			//if (typeof data.timePasses[data.urls.indexOf(urlLast.url[2])] == "undefined") {
+			//	data.timePasses.push(t);
+			//}
+			//else {
+				data.timePasses[data.urls.indexOf(urlLast.url[2])] = data.timePasses[data.urls.indexOf(urlLast.url[2])] +t;
+			//}
+			//data.timePasses[data.urls.indexOf(urlLast.url[2])] = data.timePasses[data.urls.indexOf(urlLast.url[2])] +t;
 		}
     console.log(url[2]);
 });
@@ -73,6 +82,6 @@ chrome.extension.onConnect.addListener(function(port) {
 	console.log("Connected .....");
 	port.onMessage.addListener(function(msg) {
 		console.log("message recievd "+ msg);
-		port.postMessage(urlAct.url[2]);
+		port.postMessage(data);
 	});
 });

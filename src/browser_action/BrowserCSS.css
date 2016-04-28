@@ -4,12 +4,27 @@ body{
   background-image: url(back.jpg);
 }
 #mainPopup {
-  height: 200px;
+  height: 400px;
   width: 400px;
   font-family: Quicksand;
+  color: white;
 }
 #para{
-  background-color: yellow;
+  background-color: #242323;
+  width: 250px;
+  font-size: 14px;
+  display: inline-block;
+  font-weight: bold;
+}
+#time{
+  background-color: #242323;
+  width: 100px;
+  right: 0px;
+  font-size: 14px;
+  position: absolute;
+  display: inline-block;
+  text-align: right;
+  font-weight: bold;
 }
 h1 {
   font-size: 2em;
